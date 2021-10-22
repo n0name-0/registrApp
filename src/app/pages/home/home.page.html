@@ -1,0 +1,63 @@
+<!--
+
+  Página Home | Inicio de sesión
+  Página que será desplegada a todos los usuarios para
+  iniciar sesión en la app.
+
+  Funcionalidades:
+   - Desplegar formulario de inicio de sesión.                                  ✔
+   - Validar inicio de sesión (tipo datos + usuario existente).                 
+   - Presentar botón o enlace a página 5 recuperación de contraseña.            ✔
+   - Presentar botón o enlace de inicio de sesión.                              ✔
+   - Dirigir a página 1 o 2 (dependiendo usuario) al iniciar sesión.            
+   - Presentar botón o enlace de registro de nuevo usuario. Dirigir a página 4. ✔
+
+-->
+
+<!-- Header página -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      RegistrAPP
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contenido página -->
+<ion-content [fullscreen]="true">
+
+
+  <!-- Contenedor formulario -->
+  <div id="container"> 
+    <h1 class="logoHome">Control Asistencia DUOC UC</h1>
+
+    <!-- Formulario -->
+    <form [formGroup]="persona" (ngSubmit)= "ingresar()">
+
+      <!-- Elementos + Etiquetas -->
+      <ion-item>
+        <ion-label position="stacked">Nombre usuario:</ion-label>
+        <ion-input minlength="3" required="true" formControlName="usuario"></ion-input>    
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="persona.controls.usuario.errors?.required && (persona.touched || persona.dirty)">Ingrese un nombre de usuario</ion-label>
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="persona.controls.usuario.errors?.minlength && (persona.touched || persona.dirty)">Ingrese al menos 3 dígitos.</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Contraseña:</ion-label>
+        <ion-input minlength="3" required="true" type="password" formControlName="clave"></ion-input>      
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="persona.controls.clave.errors?.required && (persona.touched || persona.dirty)">Ingrese una contraseña</ion-label>  
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="persona.controls.clave.errors?.minlength && (persona.touched || persona.dirty)">Ingrese al menos 3 dígitos.</ion-label>
+      </ion-item>
+      
+      <ion-button (click)="crearNotificacionIngreso()" class="btnInicioSesion" color="success" expand="block" type="submit" routerLink= "/pagina1" [disabled]="!persona.valid">Iniciar sesión</ion-button>
+    </form>
+
+    <!-- Botones / enlaces extra -->
+    <ion-button class="btnNewUser" color="primary" expand="block" type="submit" routerLink= "/pagina4">Registrar usuario</ion-button>
+
+    <ion-text color="danger" >
+      <a class ="linkPassword" routerLink="/pagina5"> Olvidé mi contraseña </a> 
+    </ion-text>
+
+  </div>
+</ion-content>

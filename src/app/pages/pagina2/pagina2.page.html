@@ -1,0 +1,58 @@
+<!-- Header página -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>RegistrAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contenido página -->
+<ion-content>
+
+  <!-- Bloque usuario -->
+  <div class="blockUser">
+
+    <!-- Texto bienvenida -->
+    <ion-text class="textoBienvenida">
+      <h3>¡Bienvenido, profesor!</h3>
+    </ion-text>  
+
+    <!-- Avatar usuario -->
+    <ion-avatar class="avatarUser">
+      <img src="https://i.pinimg.com/474x/39/07/81/3907818eb4b270cc9e8945c8bd450c3b.jpg">
+    </ion-avatar>
+
+  </div>
+
+  <!-- Bloque acciones user -->
+  <div>
+
+    <ion-item detail="false" button routerLink="/pagina3">
+      <ion-label>
+        Generar código QR
+      </ion-label>
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-item>
+
+    <ion-item detail="false" button routerLink="/pagina5">
+      <ion-label>
+        Cambiar contraseña
+      </ion-label>
+      <ion-icon name="key-outline"></ion-icon>
+    </ion-item>
+
+</div>
+
+<div>
+<br>
+  
+  <ion-item detail="false" (click)="crearNotificacionLogout()" button routerLink="/home">
+    <ion-label class="txtCenter" color="danger">
+      Cerrar sesión
+    </ion-label>
+  </ion-item>
+
+</div>
+
+
+</ion-content>
+

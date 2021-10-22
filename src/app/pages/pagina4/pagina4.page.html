@@ -1,0 +1,61 @@
+<!--
+
+  Página 4 | Registro usuario
+  Página que será desplegada a los usuarios al presionar el
+  botón "Registrar usuario" de la página home para registrar
+  un nuevo usuario en la app. 
+
+  Funcionalidades:
+   - Desplegar formulario de registro de usuario.           ✔
+   - Registrar usuario nuevo en LocalStorage.                    
+   - Presentar botón o enlace para volver a página home.    ✔
+   - Presentar botón o enlace de registrar usuario.         ✔
+   - Dirigir a página home al registrar un nuevo usuario.   ✔
+   - Mostrar mensaje de usuario registrado exitosamente.    ✔
+
+REVISAR METODO DE REGISTRO: Reemplaza los registros existentes por los nuevos!!!
+
+-->
+
+<!-- Header página -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+          text="">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contenido página -->
+<ion-content>
+
+  <!-- Contenedor formulario -->
+  <div id="container"> 
+    <p class="logoHome">Registro de nuevo usuario</p>
+
+    <!-- Formulario -->
+    <form [formGroup]="usuario" (ngSubmit)= "registrarUsuario()">
+
+      <!-- Elementos + Etiquetas -->
+      <ion-item>
+        <ion-label position="stacked">Nombre usuario:</ion-label>
+        <ion-input minlength="3" required="true" formControlName="usuario"></ion-input>    
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="usuario.controls.usuario.errors?.required && (usuario.touched || usuario.dirty)">Ingrese un nombre de usuario</ion-label>
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="usuario.controls.usuario.errors?.minlength && (usuario.touched || usuario.dirty)">Ingrese al menos 3 dígitos.</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Contraseña:</ion-label>
+        <ion-input minlength="3" required="true" type="password" formControlName="clave"></ion-input>      
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="usuario.controls.clave.errors?.required && (usuario.touched || usuario.dirty)">Ingrese una contraseña</ion-label>  
+        <ion-label mode="ios" position="stacked" color="danger" *ngIf="usuario.controls.clave.errors?.minlength && (usuario.touched || usuario.dirty)">Ingrese al menos 3 dígitos.</ion-label>
+      </ion-item>
+      
+      <ion-button class="btnRegUser" color="success" expand="block" type="submit" (click)="crearNotificacion()" routerLink= "/home" [disabled]="!usuario.valid">Registrar usuario</ion-button>
+    </form>
+ 
+  </div>
+</ion-content>
